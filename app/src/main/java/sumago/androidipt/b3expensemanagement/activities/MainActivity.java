@@ -1,5 +1,6 @@
 package sumago.androidipt.b3expensemanagement.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import sumago.androidipt.b3expensemanagement.R;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     FrameLayout fragmentContainer;
     BottomNavigationView bottomNavigationView;
+    FloatingActionButton btnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.action_more) loadFragment(new MoreFragment());
                 return true;
             }
+        });
 
+        btnAdd = findViewById(R.id.btnToAddExpense);
+        btnAdd.setOnClickListener(v->{
+            startActivity(new Intent(MainActivity.this, AddExpenseActivity.class));
         });
     }
 

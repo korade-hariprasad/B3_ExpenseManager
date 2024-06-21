@@ -2,18 +2,21 @@ package sumago.androidipt.b3expensemanagement.model;
 
 public class Expense {
 
-    String name, date, note;
+    String name;
+    String date;
+    String note;
+    String category;
     int id;
     double amount;
 
-    public Expense() {
-    }
+    public Expense() {}
 
-    public Expense(String name, String date, String note, double amount) {
+    public Expense(String name, String date, String note, double amount, String category) {
         this.name = name;
         this.date = date;
         this.note = note;
         this.amount = amount;
+        this.category = category;
     }
 
     public String getName() {
@@ -54,5 +57,13 @@ public class Expense {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

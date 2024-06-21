@@ -36,7 +36,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                     note = etNote.getText().toString(),
                     date = "20-06-2024";
 
-            long result = dbHelper.insertExpense(new Expense(name, date, note, amount));
+            long result = dbHelper.insertExpense(new Expense(name, date, note, amount, "default"));
 
             if(result>0)
                 Toast.makeText(this, "Expense Inserted Successfully", Toast.LENGTH_SHORT).show();

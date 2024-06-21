@@ -10,6 +10,12 @@
     android:layout_margin="10dp"
     android:orientation="vertical">
 
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Add Expensse"
+        android:textSize="20sp"
+        android:gravity="center" />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"

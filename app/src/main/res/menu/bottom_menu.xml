@@ -10,6 +10,9 @@
         android:icon="@drawable/analytics_24px"
         android:id="@+id/action_analytics" />
 
+    <item android:id="@+id/action_false"
+        android:title="false" />
+
     <item android:title="Options"
         android:icon="@drawable/tune_24px"
         android:id="@+id/action_options" />
