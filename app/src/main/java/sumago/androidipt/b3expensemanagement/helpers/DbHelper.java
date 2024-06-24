@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.lang.reflect.Array;
+import java.sql.SQLData;
 import java.util.ArrayList;
 
 import sumago.androidipt.b3expensemanagement.model.Expense;
@@ -119,5 +120,63 @@ public class DbHelper extends SQLiteOpenHelper {
         int result = db.delete(TABLE_NAME, COL_ID+"=?", new String[]{ String.valueOf(id) });
         db.close();
         return  result;
+    }
+    
+    public boolean deleteAllExpenses(){
+        SQLiteDatabase db = getWritableDatabase();
+        int result = db.delete(TABLE_NAME, null, null);
+        db.close();
+        return (result>0);
+    }
+
+    public Expense getExpenseById(int id){
+        Expense expense = new Expense();
+        SQLiteDatabase db = getReadableDatabase();
+        /*
+        * SELECT * FROM TABLE_NAME WHERE COL_ID = id
+        * */
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+COL_ID+"=?", new String[]{String.valueOf(id)});
+        if(cursor.moveToFirst()){
+            expense.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)));
+            expense.setName(cursor.getString(cursor.getColumnIndexOrThrow(COL_NAME)));
+            expense.setDate(cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE)));
+            expense.setNote(cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTE)));
+            expense.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(COL_CATEGORY)));
+            expense.setAmount(cursor.getDouble(cursor.getColumnIndexOrThrow(COL_AMOUNT)));
+        }
+        cursor.close();
+        db.close();
+        return expense;
+    }
+
+    public long updateExpense(int id, Expense expense) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_NAME, expense.getName());
+        values.put(COL_AMOUNT, expense.getAmount());
+        values.put(COL_DATE, expense.getDate());
+        values.put(COL_NOTE, expense.getNote());
+        values.put(COL_CATEGORY, expense.getCategory());
+        /*
+        * UPDATE TABLE_NAME SET COL_NAME = 'new_name' WHERE COL_ID=id
+        * */
+        long result = db.update(TABLE_NAME, values, COL_ID+"=?", new String[]{String.valueOf(id)});
+        db.close();
+        return result;
+    }
+
+    public ArrayList<String> getAllCategories() {
+        //Set
+        ArrayList<String> categoryNames = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cr = db.rawQuery("SELECT DISTINCT "+COL_CATEGORY+" FROM "+TABLE_NAME, null);
+        if(cr.moveToFirst()){
+            do{
+                categoryNames.add(cr.getString(0));
+            }while (cr.moveToNext());
+        }
+        cr.close();
+        db.close();
+        return categoryNames;
     }
 }

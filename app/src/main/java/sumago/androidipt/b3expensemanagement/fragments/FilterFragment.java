@@ -12,10 +12,10 @@ import sumago.androidipt.b3expensemanagement.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link OptionsFragment#newInstance} factory method to
+ * Use the {@link FilterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OptionsFragment extends Fragment {
+public class FilterFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class OptionsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public OptionsFragment() {
+    public FilterFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class OptionsFragment extends Fragment {
      * @return A new instance of fragment OptionsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OptionsFragment newInstance(String param1, String param2) {
-        OptionsFragment fragment = new OptionsFragment();
+    public static FilterFragment newInstance(String param1, String param2) {
+        FilterFragment fragment = new FilterFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class OptionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_options, container, false);
+        return inflater.inflate(R.layout.fragment_filter, container, false);
     }
 }

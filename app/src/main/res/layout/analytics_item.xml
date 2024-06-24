@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView android:id="@+id/tvCategoryName"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Minimum: "/>
+            <TextView android:id="@+id/tvCategoryMin"
+                android:text="200"/>
+            <TextView android:layout_weight="1"/>
+            <TextView android:text="Maximum: "/>
+            <TextView android:id="@+id/tvCategoryMax"
+                android:text="200"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Average: "/>
+            <TextView android:id="@+id/tvCategoryAvg"
+                android:text="200"/>
+            <TextView android:layout_weight="1"/>
+            <TextView android:text="Total: "/>
+            <TextView android:id="@+id/tvCategoryTotal"
+                android:text="200"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

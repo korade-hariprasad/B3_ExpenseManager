@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import sumago.androidipt.b3expensemanagement.R;
+import sumago.androidipt.b3expensemanagement.activities.UpdateInfoActivity;
 import sumago.androidipt.b3expensemanagement.activities.ExpenseInfoActivity;
 import sumago.androidipt.b3expensemanagement.helpers.DbHelper;
 import sumago.androidipt.b3expensemanagement.interfaces.onItemDeleteListener;
@@ -21,7 +21,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
     ArrayList<Expense> expenseList;
     TextView tvName, tvAmount;
-    Button btnInfo, btnEdit, btnDelete;
+    ImageButton btnInfo, btnEdit, btnDelete;
     DbHelper dbHelper;
     onItemDeleteListener onItemDeleteListener;
 
@@ -56,16 +56,17 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
         btnEdit.setOnClickListener(v->{
             //code to edit the item
+            Intent i = new Intent(v.getContext(), UpdateInfoActivity.class);
+            i.putExtra("id", expenseList.get(position).getId());
+            holder.itemView.getContext().startActivity(i);
         });
 
         btnInfo.setOnClickListener(v->{
             //code to get info of the item
-            /*
             Intent i = new Intent(v.getContext(), ExpenseInfoActivity.class);
-            i.putExtra("name", expenseList.get(position).getName());
+            i.putExtra("id", expenseList.get(position).getId());
             holder.itemView.getContext().startActivity(i);
-            */
-            Toast.makeText(v.getContext(), expenseList.get(position).getNote(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), expenseList.get(position).getNote(), Toast.LENGTH_SHORT).show();
         });
     }
 

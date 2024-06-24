@@ -19,7 +19,7 @@ import sumago.androidipt.b3expensemanagement.R;
 import sumago.androidipt.b3expensemanagement.fragments.AnalyticsFragment;
 import sumago.androidipt.b3expensemanagement.fragments.HomeFragment;
 import sumago.androidipt.b3expensemanagement.fragments.MoreFragment;
-import sumago.androidipt.b3expensemanagement.fragments.OptionsFragment;
+import sumago.androidipt.b3expensemanagement.fragments.FilterFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.action_home) loadFragment(new HomeFragment());
                 if(item.getItemId() == R.id.action_analytics) loadFragment(new AnalyticsFragment());
-                if(item.getItemId() == R.id.action_options) loadFragment(new OptionsFragment());
+                if(item.getItemId() == R.id.action_options) loadFragment(new FilterFragment());
                 if(item.getItemId() == R.id.action_more) loadFragment(new MoreFragment());
                 return true;
             }

@@ -29,34 +29,55 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnEdit"
             android:id="@+id/btnInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/info_24px"
+            android:background="@drawable/round_btn"
+            android:padding="8dp"
             android:text="Info"
             android:layout_weight="1"
             android:layout_margin="5dp"/>
 
-        <Button
+        <ImageButton
+            app:layout_constraintStart_toEndOf="@id/btnInfo"
+            app:layout_constraintEnd_toStartOf="@id/btnDelete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_btn"
+            android:padding="8dp"
+            android:src="@drawable/edit_24px"
             android:text="Edit"
             android:layout_weight="1"
             android:layout_margin="5dp"/>
 
-        <Button
+        <ImageButton
+            app:layout_constraintStart_toEndOf="@id/btnEdit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_btn"
+            android:padding="8dp"
+            android:src="@drawable/delete_24px"
             android:text="Delete"
             android:layout_weight="1"
             android:layout_margin="5dp"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
