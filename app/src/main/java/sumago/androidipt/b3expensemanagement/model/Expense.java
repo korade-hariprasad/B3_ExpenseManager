@@ -8,17 +8,8 @@ public class Expense {
     String category;
     int id;
     double amount;
-    double sum=0;
 
     public Expense() {}
-
-    public double getSum() {
-        return sum;
-    }
-
-    public void setSum(double sum) {
-        this.sum = sum;
-    }
 
     public Expense(String name, String date, String note, double amount, String category) {
         this.name = name;

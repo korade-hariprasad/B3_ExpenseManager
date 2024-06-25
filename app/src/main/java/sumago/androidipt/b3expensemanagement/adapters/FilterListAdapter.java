@@ -16,7 +16,6 @@ import sumago.androidipt.b3expensemanagement.R;
 import sumago.androidipt.b3expensemanagement.activities.ExpenseInfoActivity;
 import sumago.androidipt.b3expensemanagement.activities.UpdateInfoActivity;
 import sumago.androidipt.b3expensemanagement.helpers.DbHelper;
-import sumago.androidipt.b3expensemanagement.interfaces.SetTotalFilterInterface;
 import sumago.androidipt.b3expensemanagement.interfaces.onItemDeleteListener;
 import sumago.androidipt.b3expensemanagement.model.Expense;
 
@@ -27,12 +26,10 @@ public class FilterListAdapter extends RecyclerView.Adapter<FilterListAdapter.Vi
     ImageButton btnInfo, btnEdit, btnDelete;
     DbHelper dbHelper;
     onItemDeleteListener onItemDeleteListener;
-    SetTotalFilterInterface setTotalFilterInterface;
 
-    public FilterListAdapter(ArrayList<Expense> filteredExpenseList, onItemDeleteListener onItemDeleteListener, SetTotalFilterInterface setTotalFilterInterface) {
+    public FilterListAdapter(ArrayList<Expense> filteredExpenseList, onItemDeleteListener onItemDeleteListener) {
         this.filteredExpenseList = filteredExpenseList;
         this.onItemDeleteListener = onItemDeleteListener;
-        this.setTotalFilterInterface = setTotalFilterInterface;
     }
 
     @NonNull
@@ -61,8 +58,6 @@ public class FilterListAdapter extends RecyclerView.Adapter<FilterListAdapter.Vi
             i.putExtra("id", filteredExpenseList.get(position).getId());
             holder.itemView.getContext().startActivity(i);
         });
-
-        setTotalFilterInterface.setTotal(filteredExpenseList.get(position).getSum());
     }
 
     @Override

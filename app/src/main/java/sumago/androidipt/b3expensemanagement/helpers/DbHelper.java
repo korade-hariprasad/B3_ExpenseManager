@@ -210,7 +210,7 @@ public class DbHelper extends SQLiteOpenHelper {
         ArrayList<Expense> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         //SELECT * FROM expense WHERE category=? AND date BETWEEN ? AND ?;
-        Cursor cursor = db.rawQuery("SELECT id, name, date, note, category, amount, SUM(amount) FROM expense WHERE category=? AND date BETWEEN ? AND ?;", new String[]{selectedCategory, startDate, endDate});
+        Cursor cursor = db.rawQuery("SELECT * FROM expense WHERE category=? AND date BETWEEN ? AND ?;", new String[]{selectedCategory, startDate, endDate});
         if(cursor.moveToNext()){
             do{
                 Expense expense = new Expense();
@@ -220,7 +220,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 expense.setNote(cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTE)));
                 expense.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(COL_CATEGORY)));
                 expense.setAmount(cursor.getDouble(cursor.getColumnIndexOrThrow(COL_AMOUNT)));
-                expense.setSum(cursor.getDouble(6));
                 list.add(expense);
             }while(cursor.moveToNext());
         }
@@ -228,4 +227,20 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
+
+    public double getTotalAmount(String selectedCategory, String startDate, String endDate) {
+        double totalAmount = 0;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT SUM(amount) AS total FROM expense WHERE category=? AND date BETWEEN ? AND ?;",
+                new String[]{selectedCategory, startDate, endDate});
+
+        if(cursor.moveToFirst()){
+            totalAmount = cursor.getDouble(cursor.getColumnIndexOrThrow("total"));
+        }
+        cursor.close();
+        db.close();
+        return totalAmount;
+    }
+
 }

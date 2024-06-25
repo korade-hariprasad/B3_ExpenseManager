@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,15 +28,14 @@ import java.util.Calendar;
 import sumago.androidipt.b3expensemanagement.R;
 import sumago.androidipt.b3expensemanagement.adapters.FilterListAdapter;
 import sumago.androidipt.b3expensemanagement.helpers.DbHelper;
-import sumago.androidipt.b3expensemanagement.interfaces.SetTotalFilterInterface;
 import sumago.androidipt.b3expensemanagement.interfaces.onItemDeleteListener;
 
-public class FilterFragment extends Fragment implements onItemDeleteListener, SetTotalFilterInterface {
+public class FilterFragment extends Fragment implements onItemDeleteListener {
 
     Spinner spinnerCategory;
     TextView tvStartDate, tvEndDate, tvSum;
     RecyclerView recyclerViewFilter;
-    FloatingActionButton fabFilter;
+    ImageButton fabFilter;
     DbHelper dbHelper;
     Calendar calendar;
     int day, month, year;
@@ -122,7 +122,8 @@ public class FilterFragment extends Fragment implements onItemDeleteListener, Se
     }
 
     public void loadData(){
-        recyclerViewFilter.setAdapter(new FilterListAdapter(dbHelper.getFilteredExpenses(selectedCategory, startDate, endDate), this, this));
+        recyclerViewFilter.setAdapter(new FilterListAdapter(dbHelper.getFilteredExpenses(selectedCategory, startDate, endDate), this));
+        tvSum.setText("Total: "+dbHelper.getTotalAmount(selectedCategory, startDate, endDate));
     }
 
     @Override
@@ -133,10 +134,5 @@ public class FilterFragment extends Fragment implements onItemDeleteListener, Se
             loadData();
         }
         else Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void setTotal(double total) {
-        tvSum.setText(String.valueOf(total));
     }
 }
