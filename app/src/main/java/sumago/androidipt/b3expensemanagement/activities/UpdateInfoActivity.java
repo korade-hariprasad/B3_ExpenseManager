@@ -64,7 +64,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
         etName.setText(expense.getName());
         etNote.setText(expense.getNote());
         tvDate.setText(expense.getDate());
-        //etCategory.setText(expense.getCategory());
+        etCategory.setText(expense.getCategory());
         etAmount.setText(String.valueOf(expense.getAmount()));
 
         spCategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoryNames));
@@ -88,7 +88,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            selectedDate = dayOfMonth+"-"+(month+1)+"-"+year;
+                            selectedDate = year+"-"+(month+1)+"-"+dayOfMonth;
                             tvDate.setText(selectedDate);
                         }
                     }, year, month, day);

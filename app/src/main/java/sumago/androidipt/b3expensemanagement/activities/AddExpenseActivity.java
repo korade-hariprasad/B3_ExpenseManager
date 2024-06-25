@@ -53,7 +53,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         categoryNames = dbHelper.getAllCategories();
         categoryNames.add("Other");
-        selectedDate = day+"-"+(month+1)+"-"+year;
+        selectedDate = year+"-"+(month+1)+"-"+day;
         tvDate.setText(selectedDate);
 
         /*
@@ -83,7 +83,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            selectedDate = dayOfMonth+"-"+(month+1)+"-"+year;
+                            selectedDate = year+"-"+(month+1)+"-"+dayOfMonth;
                             tvDate.setText(selectedDate);
                         }
                     }, year, month, day);
